@@ -1,5 +1,7 @@
 package com.javatechnolessons.demo.service;
 
+import java.util.List;
+
 import com.javatechnolessons.demo.exception.BusinessException;
 import com.javatechnolessons.demo.exception.TechnicalException;
 import com.javatechnolessons.demo.model.Role;
@@ -18,6 +20,11 @@ public class RoleServiceImpl implements IRoleService {
 
     @Autowired
     private IRoleJpaRepository repoRole;
+
+    @Override
+    public List<Role> getAll() {
+        return repoRole.findAll();
+    }
 
     @Override
     public Role create(String name) throws BusinessException, TechnicalException {
@@ -39,6 +46,39 @@ public class RoleServiceImpl implements IRoleService {
         }
 
         return role;
+    }
+
+    @Override
+    public void remove(String name) {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void remove(Long id) throws BusinessException, TechnicalException{
+        repoRole.deleteById(id);
+        
+    }
+
+    @Override
+    public Role get(Long id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Role get(String name) {
+        return null;
+    }
+
+    @Override
+    public Role update(Long id, Role new_role) {
+        return repoRole.save(new_role);
+    }
+
+    @Override
+    public Role update(String name, Role new_role) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
