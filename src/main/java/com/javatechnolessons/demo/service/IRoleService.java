@@ -1,7 +1,9 @@
 package com.javatechnolessons.demo.service;
 
-import com.javatechnolessons.demo.model.Role;
+import javax.validation.Valid;
+
+import com.javatechnolessons.demo.dto.RoleDto;
 
 public interface IRoleService {
-    Role create(String name);
+    public RoleDto create(@Valid RoleDto role);
 }
