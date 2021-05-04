@@ -1,6 +1,9 @@
 package com.javatechnolessons.demo.dto;
 
+import java.util.List;
+
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
@@ -10,19 +13,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class RoleDTO {
+public class EmployeeDTO {
     @EqualsAndHashCode.Include
     private Long id;
-
     @NotBlank
-    @Size(max = 15)
-    private String name;
-
-    public RoleDTO(String name) {
-        this.name = name;
-    }
+    @Size(max = 10)
+    private String employeeid;
+    @NotBlank
+    @Size(max = 25)
+    private String firstName;
+    @NotBlank
+    @Size(max = 25)
+    private String lastName;
+    @NotNull
+    private RoleDTO role;
+    private List<ProjectDTO> projects;
 }

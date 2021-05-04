@@ -10,11 +10,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class RoleDTO {
+public class ProjectDTO {
     @EqualsAndHashCode.Include
     private Long id;
 
@@ -22,7 +24,7 @@ public class RoleDTO {
     @Size(max = 15)
     private String name;
 
-    public RoleDTO(String name) {
+    public ProjectDTO(String name) {
         this.name = name;
     }
 }

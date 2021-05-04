@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import javax.validation.ConstraintViolationException;
 
-import com.javatechnolessons.demo.dto.RoleDto;
+import com.javatechnolessons.demo.dto.RoleDTO;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +16,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class RoleContraintsValidationExceptionTest {
+public class RoleServiceTest {
     /**
      *
      */
@@ -27,15 +27,15 @@ public class RoleContraintsValidationExceptionTest {
     @Test
     public void contraintsValidationExceptionTest(){
 
-        assertThrows(ConstraintViolationException.class, ()-> {roleService.create(new RoleDto(null));});
-        assertThrows(ConstraintViolationException.class, ()-> {roleService.create(new RoleDto(""));});
-        assertThrows(ConstraintViolationException.class, ()-> {roleService.create(new RoleDto("1234567890123456"));});
+        assertThrows(ConstraintViolationException.class, ()-> {roleService.save(new RoleDTO(null));});
+        assertThrows(ConstraintViolationException.class, ()-> {roleService.save(new RoleDTO(""));});
+        assertThrows(ConstraintViolationException.class, ()-> {roleService.save(new RoleDTO("1234567890123456"));});
        
     }
 
     @Test
-    public void createRoleOk(){
-        RoleDto roleDto = roleService.create(new RoleDto(ADMIN));
+    public void saveRoleOk(){
+        RoleDTO roleDto = roleService.save(new RoleDTO(ADMIN));
         assertNotNull(roleDto);
         assertEquals(ADMIN, roleDto.getName());
         assertNotNull(roleDto.getId());
