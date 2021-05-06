@@ -1,11 +1,15 @@
 package com.javatechnolessons.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.javatechnolessons.demo.dto.EmployeeDTO;
+import com.javatechnolessons.demo.dto.ProjectDTO;
 import com.javatechnolessons.demo.model.Employee;
+import com.javatechnolessons.demo.model.Project;
 import com.javatechnolessons.demo.repository.IEmployeeJpaRepository;
+import com.javatechnolessons.demo.repository.IProjectJpaRepository;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +29,22 @@ public class EmployeeServiceImpl implements IEmployeeService {
     private IEmployeeJpaRepository employeeRepo;
 
     @Autowired
+    private IProjectJpaRepository projectRepo;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     @Override
     public EmployeeDTO save(EmployeeDTO employee) {
         Employee employeeEntity = modelMapper.map(employee, Employee.class);
+
+        if(employee.getId() == null){
+            List<Long> ids = new ArrayList<Long>();
+            for(ProjectDTO project:employee.getProjects()){
+                ids.add(project.getId());
+            }
+            employeeEntity.setProjects(projectRepo.findByProjects(ids));
+        }
         employeeEntity = employeeRepo.save(employeeEntity);
         return modelMapper.map(employeeEntity, EmployeeDTO.class);
     }

@@ -1,0 +1,4 @@
+http://localhost:8080/employee/show
+http://localhost:8080/employee/edit/9
+http://localhost:8080/employee/delete/9
+http://localhost:8080/employee/save (methode FORM)

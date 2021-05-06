@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/javatechnolessons.css'>
+</head>
+
+<body>
+    <h1>ThymeLeaf CRUD example in Spring Boot with MySQL</h1>
+    <img th:src="@{/images/jtl_logo.png}"> 
+    <br><br>
+    <div><a href="/roles/show"><button class="button">Roles</button></a>&nbsp;<a href="/projects/show"><button class="button">Projects</button></a>&nbsp;<a href="/employees/show"><button class="button">Employees</button></a></div>
+    <br>
+    <th:block th:if="${error} != null">
+        <br>
+        <div class="error">Error:<span th:text="${error}"></span></div>
+        <br>
+    </th:block>
+    <fieldset>
+        <legend>Employee form</legend>
+        <form th:action="@{/employees/save}" method="POST" th:object="${form}">
+            <input type="hidden" name="id" th:field="*{employee.id}" th:value="*{employee != null} ? *{employee.id}">
+            <table cellpadding="5" cellspacing="5">
+                <tr>
+                    <td><label for="name">Employee ID</label></td>
+                    <td><input type="text" th:field="*{employee.employeeid}" th:value="*{employee != null} ? *{employee.employeeid}" id="employeeid" name="employeeid"></td>
+                </tr>
+                <tr>
+                    <td><label for="name">FirstName</label></td>
+                    <td><input type="text" th:field="*{employee.firstName}" th:value="*{employee != null} ? *{employee.firstName}" id="firstName" name="firstName"></td>
+                </tr>
+                <tr>
+                    <td><label for="name">Last Name</label></td>
+                    <td><input type="text" th:field="*{employee.lastName}" th:value="*{employee != null} ? *{employee.lastName}" id="lastName" name="lastName"></td>
+                </tr>
+
+                <tr>
+                    <td><label for="role">Role</label></td>
+                    <td>
+                        <select th:object="${form}" th:field="*{employee.role}" style="padding: 5px;">
+                            <option th:each="roleItem: *{roles}"
+                                th:value="${roleItem.id}"
+                                th:utext="${roleItem.name}">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="projects">Projects</label></td>
+                    <td>
+                        <th:block th:each="project: *{projects}">
+                            <input type="checkbox" th:field="*{employee.projects}" id="projects" th:text="${project.name}"
+                                th:value="${project.id}"><br>
+                        </th:block>
+                    </td>
+
+                </tr>
+                
+
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><input class="button" type="submit" value="save"></td>
+                </tr>
+</body>
+
+</html>

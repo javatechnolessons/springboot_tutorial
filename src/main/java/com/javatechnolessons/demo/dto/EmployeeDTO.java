@@ -1,5 +1,6 @@
 package com.javatechnolessons.demo.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
@@ -16,7 +17,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class EmployeeDTO {
@@ -33,5 +33,13 @@ public class EmployeeDTO {
     private String lastName;
     @NotNull
     private RoleDTO role;
-    private List<ProjectDTO> projects;
+    private List<ProjectDTO> projects = new ArrayList<ProjectDTO>();
+    public EmployeeDTO(String firstName, String lastName, String employeeid, RoleDTO role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.employeeid = employeeid;
+        this.role = role;
+    }
+
+    
 }

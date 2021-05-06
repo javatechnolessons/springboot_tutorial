@@ -1,4 +1,4 @@
-package com.javatechnolessons.demo;
+package com.javatechnolessons.demo.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

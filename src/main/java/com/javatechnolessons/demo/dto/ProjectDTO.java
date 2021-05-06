@@ -1,5 +1,7 @@
 package com.javatechnolessons.demo.dto;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -16,7 +18,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class ProjectDTO {
+public class ProjectDTO implements Serializable{
     @EqualsAndHashCode.Include
     private Long id;
 
@@ -24,7 +26,7 @@ public class ProjectDTO {
     @Size(max = 15)
     private String name;
 
-    public ProjectDTO(String name) {
-        this.name = name;
+    public ProjectDTO(String id){
+        this.id= Long.valueOf(id);
     }
 }

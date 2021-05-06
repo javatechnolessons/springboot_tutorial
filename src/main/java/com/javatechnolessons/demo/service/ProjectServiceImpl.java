@@ -1,11 +1,14 @@
 package com.javatechnolessons.demo.service;
 
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.javatechnolessons.demo.dto.ProjectDTO;
 import com.javatechnolessons.demo.model.Project;
 import com.javatechnolessons.demo.repository.IProjectJpaRepository;
+import com.javatechnolessons.demo.service.exception.BusinessException;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +53,13 @@ public class ProjectServiceImpl implements IProjectService {
     }
 
     @Override
-    public void delete(Long id) {
-        projectRepo.deleteById(id);
+    public void delete(Long id) throws BusinessException{
+        try {
+            projectRepo.deleteById(id);
+        } catch (Exception e) {
+            throw new BusinessException("Can't be deleted",e);
+        }
+        
 
     }
 

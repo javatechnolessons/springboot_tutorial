@@ -11,18 +11,22 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class RoleDTO {
     @EqualsAndHashCode.Include
-    private Long id;
+    private String id;
 
     @NotBlank
     @Size(max = 15)
     private String name;
 
-    public RoleDTO(String name) {
+    public RoleDTO(String id, @NotBlank @Size(max = 15) String name) {
+        this.id = id;
         this.name = name;
     }
+
+    
+
 }
