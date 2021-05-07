@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/javatechnolessons.css'>
+    <script>function validateForm() {
+            var x = document.forms["form"]["name"].value;
+            if (x == "") {
+                alert("Name must be filled out");
+                return false;
+            }
+        }</script>
+</head>
+
+<body>
+    <h1>ThymeLeaf CRUD example in Spring Boot with MySQL</h1>
+    <img src="/images/jtl_logo.png">
+    <br><br>
+    <div><a href="/roles/show"><button class="button">Roles</button></a>&nbsp;<a href="/projects/show"><button
+                class="button">Projects</button></a>&nbsp;<a href="/employees/show"><button
+                class="button">Employees</button></a></div>
+    <br>
+    <fieldset>
+        <legend>Project form</legend>
+        <form id="form" th:action="@{/roles/save}" method="POST" th:object="${form}"
+            onsubmit="return validateForm()">
+            <input type="hidden" th:field="*{role.id}">
+            <table cellpadding="5" cellspacing="5">
+                <tr>
+                    <td><label for="name">Name</label></td>
+                    <td><input type="text" size="25" th:field="*{role.name}">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><input class="button" type="submit" value="save"></td>
+                </tr>
+</body>
+
+</html>

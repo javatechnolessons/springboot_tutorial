@@ -1,0 +1,50 @@
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/javatechnolessons.css'>
+</head>
+<body>
+    <h1>ThymeLeaf CRUD example in Spring Boot with MySQL</h1>
+    <img th:src="@{/images/jtl_logo.png}"> 
+    <br><br>
+    <div><a href="/roles/show"><button class="button">Roles</button></a>&nbsp;<a href="/projects/show"><button class="button">Projects</button></a>&nbsp;<a href="/employees/show"><button class="button">Employees</button></a></div>
+    <br>
+    <table id="tablestyle">
+      <caption>Employees &nbsp; <a th:href="@{new}"><img th:src="@{/images/create.png}" witdh="15px" height="15px"></a> </caption>
+        <tr>
+          <th>EMPLOYEE ID</th>
+          <th>FIRSTNAME</th>
+          <th>LASTNAME</th>
+          <th>ROLE</th>
+          <th>PROJECTS</th>
+          <th colspan="2">&nbsp;</th>
+        </tr>
+        
+        <tr th:each=" employee: ${listEmployees}">
+            <td th:text="${employee.employeeid}">
+            <td th:text="${employee.firstName}">
+            <td th:text="${employee.lastName}">
+            <td th:text="${employee.role.name}">
+            <td>
+                <input type="checkbox" disabled="true" name="projects" id="projects" th:text="${project.name}"
+                th:each="project: ${employee.projects}" th:checked="${#lists.contains(employee.projects,project)}">
+            </td>
+              <td>
+                <a th:href="@{edit/} + ${employee.id}">
+                  <img th:src="@{/images/edit.png}" witdh="15px" height="15px" alt="edit">
+                </a>
+              </td>
+              <td>
+                <a th:href="@{delete/} + ${employee.id}">
+                  <img th:src="@{/images/delete.png}" witdh="15px" height="15px" alt="delete">
+                </a>
+              </td>
+              
+          </tr>
+
+      </table>
+</body>
+</html>
