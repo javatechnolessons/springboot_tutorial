@@ -27,17 +27,17 @@ public class ProjectServiceTest {
     @Test
     public void contraintsValidationExceptionTest(){
 
-        // assertThrows(ConstraintViolationException.class, ()-> {projectService.save(new ProjectDTO(null));});
-        // assertThrows(ConstraintViolationException.class, ()-> {projectService.save(new ProjectDTO(""));});
-        // assertThrows(ConstraintViolationException.class, ()-> {projectService.save(new ProjectDTO("1234567890123456"));});
+        assertThrows(ConstraintViolationException.class, ()-> {projectService.save(new ProjectDTO(null));});
+        assertThrows(ConstraintViolationException.class, ()-> {projectService.save(new ProjectDTO(""));});
+        assertThrows(ConstraintViolationException.class, ()-> {projectService.save(new ProjectDTO("1234567890123456"));});
        
     }
 
     @Test
     public void saveProjectOk(){
-/*         ProjectDTO projectDto = projectService.save(new ProjectDTO(PROJECT1));
+        ProjectDTO projectDto = projectService.save(new ProjectDTO(PROJECT1));
         assertNotNull(projectDto);
         assertEquals(PROJECT1, projectDto.getName());
-        assertNotNull(projectDto.getId()); */
+        assertNotNull(projectDto.getId());
     }
 }

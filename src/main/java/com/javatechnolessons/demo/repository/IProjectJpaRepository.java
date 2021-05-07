@@ -18,6 +18,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IProjectJpaRepository extends JpaRepository<Project, Long> {
     Project findByName(String name);
+    // @Cacheable(value = "projects")
+    // List<Project> findAll();
 
     @Query("select p from Project p where p.id in :ids")
     List<Project> findByProjects(@Param("ids") List<Long> ids);

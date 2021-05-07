@@ -1,7 +1,5 @@
 package com.javatechnolessons.demo.service;
 
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -1,4 +1,14 @@
-http://localhost:8080/employee/show
-http://localhost:8080/employee/edit/9
-http://localhost:8080/employee/delete/9
-http://localhost:8080/employee/save (methode FORM)
+http://localhost:8080/roles/show (method GET)
+http://localhost:8080/roles/edit/9 (method GET)
+http://localhost:8080/roles/delete/8 (method GET)
+http://localhost:8080/roles/save (method FORM)
+
+http://localhost:8080/projects/show (method GET)
+http://localhost:8080/projects/edit/9 (method GET)
+http://localhost:8080/projects/delete/8 (method GET)
+http://localhost:8080/projects/save (method FORM)
+
+http://localhost:8080/employees/show (method GET)
+http://localhost:8080/employees/edit/9 (method GET)
+http://localhost:8080/employees/delete/8 (method GET)
+http://localhost:8080/employees/save (method FORM)

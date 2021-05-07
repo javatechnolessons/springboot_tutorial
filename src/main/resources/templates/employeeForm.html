@@ -36,7 +36,6 @@
                     <td><label for="name">Last Name</label></td>
                     <td><input type="text" th:field="*{employee.lastName}" th:value="*{employee != null} ? *{employee.lastName}" id="lastName" name="lastName"></td>
                 </tr>
-
                 <tr>
                     <td><label for="role">Role</label></td>
                     <td>
@@ -55,14 +54,12 @@
                                 th:value="${project.id}"><br>
                         </th:block>
                     </td>
-
                 </tr>
-                
-
                 <tr>
                     <td>&nbsp;</td>
                     <td><input class="button" type="submit" value="save"></td>
                 </tr>
+            </table>
 </body>
 
 </html>

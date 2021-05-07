@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import com.javatechnolessons.demo.dto.EmployeeDTO;
 import com.javatechnolessons.demo.dto.ProjectDTO;
 import com.javatechnolessons.demo.model.Employee;
-import com.javatechnolessons.demo.model.Project;
 import com.javatechnolessons.demo.repository.IEmployeeJpaRepository;
 import com.javatechnolessons.demo.repository.IProjectJpaRepository;
 

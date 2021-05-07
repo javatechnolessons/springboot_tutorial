@@ -1,0 +1,41 @@
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' th:href="@{/css/javatechnolessons.css}">
+</head>
+
+<body>
+  <h1>ThymeLeaf CRUD example in Spring Boot with MySQL</h1>
+  <img th:src="@{/images/jtl_logo.png}">
+  <br><br>
+  <div><a href="/roles/show"><button class="button">Roles</button></a>&nbsp;<a href="/projects/show"><button
+        class="button">Projects</button></a>&nbsp;<a href="/employees/show"><button
+        class="button">Employees</button></a></div>
+  <br>
+  <table id="tablestyle">
+    <caption>Roles &nbsp; <a th:href="@{new}"><img th:src="@{/images/create.png}" witdh="15px" height="15px"></a> </caption>
+    <tr>
+      <th>NAME</th>
+      <th colspan="2">&nbsp;</th>
+    </tr>
+    <tr th:each="role: ${listRoles}">
+      <td th:text="${role.name}">
+      <td>
+        <a th:href="@{edit/} + ${role.id}">
+          <img th:src="@{/images/edit.png}" witdh="15px" height="15px" alt="edit">
+        </a>
+      </td>
+      <td>
+        <a th:href="@{delete/} + ${role.id}">
+          <img th:src="@{/images/delete.png}" witdh="15px" height="15px" alt="delete">
+        </a>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>
