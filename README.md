@@ -9,3 +9,5 @@
 * Lombok: component fixes
 ## v1.4
 * Spring MVC + ThymeLeaf: component fixes
+## v1.5
+* REST webservices
