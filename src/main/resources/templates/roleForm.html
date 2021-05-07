@@ -24,7 +24,7 @@
                 class="button">Employees</button></a></div>
     <br>
     <fieldset>
-        <legend>Project form</legend>
+        <legend>Role form</legend>
         <form id="form" th:action="@{/roles/save}" method="POST" th:object="${form}"
             onsubmit="return validateForm()">
             <input type="hidden" th:field="*{role.id}">
