@@ -26,7 +26,7 @@ public class ProjectDTO implements Serializable{
     @Size(max = 15)
     private String name;
 
-    public ProjectDTO(String id){
-        this.id= Long.valueOf(id);
+    public ProjectDTO(String name){
+        this.name= name;
     }
 }
