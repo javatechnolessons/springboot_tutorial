@@ -9,7 +9,6 @@ import com.javatechnolessons.demo.service.IProjectService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,7 +47,7 @@ public class ProjectMvcController {
     }
 
     @GetMapping(value = "/delete/{id}")
-    public ModelAndView deleteProject(@ModelAttribute("id") Long id,BindingResult result) {    
+    public ModelAndView deleteProject(@ModelAttribute("id") Long id) {    
         projectService.delete(id);         
         return new ModelAndView("redirect:/projects/show");
     }

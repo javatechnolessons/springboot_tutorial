@@ -5,7 +5,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='css/javatechnolessons.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/javatechnolessons.css'>
     <script>function validateForm() {
             var x = document.forms["form"]["name"].value;
             if (x == "") {
@@ -17,7 +17,7 @@
 
 <body>
     <h1>ThymeLeaf CRUD example in Spring Boot with MySQL</h1>
-    <img src="images/jtl_logo.png">
+    <img src="/images/jtl_logo.png">
     <br><br>
     <div><a href="/roles/show"><button class="button">Roles</button></a>&nbsp;<a href="/projects/show"><button
                 class="button">Projects</button></a>&nbsp;<a href="/employees/show"><button
@@ -25,13 +25,13 @@
     <br>
     <fieldset>
         <legend>Project form</legend>
-        <form id="form" action="/projects/save" method="POST" 
+        <form id="form" th:action="@{/roles/save}" method="POST" th:object="${form}"
             onsubmit="return validateForm()">
-            <input type="hidden" name="id" id="name" value="TODO_ROLE_ID">
+            <input type="hidden" th:field="*{role.id}">
             <table cellpadding="5" cellspacing="5">
                 <tr>
                     <td><label for="name">Name</label></td>
-                    <td><input type="text" size="25" name="name" value="TODO_ROLE_NAME">
+                    <td><input type="text" size="25" th:field="*{role.name}">
                     </td>
                 </tr>
 
