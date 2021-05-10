@@ -2,8 +2,8 @@ package com.javatechnolessons.demo.rest.controller;
 
 import java.util.List;
 
-import com.javatechnolessons.demo.dto.RoleDTO;
-import com.javatechnolessons.demo.service.IRoleService;
+import com.javatechnolessons.demo.dto.EmployeeDTO;
+import com.javatechnolessons.demo.service.IEmployeeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,34 +16,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/roles")
-public class RoleRestController {
+@RequestMapping("/api/employees")
+public class EmployeeRestController {
 
     @Autowired
-    private IRoleService roleService;
+    IEmployeeService employeeService;
 
     @GetMapping("/{id}")
-    public RoleDTO getRole(@PathVariable("id") Long id) {
-        return roleService.get(id);
+    public EmployeeDTO getEmployee(@PathVariable("id") Long id) {
+        return employeeService.get(id);
     }
 
     @GetMapping("/all")
-    public List<RoleDTO> getAllRoles(){
-        return roleService.getAll();
+    public List<EmployeeDTO> getAllEmployees() {
+        return employeeService.getAll();
     }
 
     @PostMapping("/new")
-    RoleDTO newRole(@RequestBody RoleDTO newRole) {
-      return roleService.save(newRole);
+    EmployeeDTO newEmployee(@RequestBody EmployeeDTO newEmployee) {
+      return employeeService.save(newEmployee);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteRole(@PathVariable("id") Long id){
-      roleService.delete(id);
+    public void deleteEmployee(@PathVariable("id") Long id){
+      employeeService.delete(id);
     }
 
     @PutMapping("/update")
-    public RoleDTO updateRole(@RequestBody RoleDTO updatedRole){
-      return roleService.save(updatedRole);
+    public EmployeeDTO updateEmployee(@RequestBody EmployeeDTO updatedEmployee){
+      return employeeService.save(updatedEmployee);
     }
 }

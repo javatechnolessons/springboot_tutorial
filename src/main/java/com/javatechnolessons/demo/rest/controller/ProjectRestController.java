@@ -2,8 +2,8 @@ package com.javatechnolessons.demo.rest.controller;
 
 import java.util.List;
 
-import com.javatechnolessons.demo.dto.RoleDTO;
-import com.javatechnolessons.demo.service.IRoleService;
+import com.javatechnolessons.demo.dto.ProjectDTO;
+import com.javatechnolessons.demo.service.IProjectService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,34 +16,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/roles")
-public class RoleRestController {
+@RequestMapping("/api/projects")
+public class ProjectRestController {
 
     @Autowired
-    private IRoleService roleService;
+    private IProjectService projectService;
 
     @GetMapping("/{id}")
-    public RoleDTO getRole(@PathVariable("id") Long id) {
-        return roleService.get(id);
+    public ProjectDTO getProject(@PathVariable("id") Long id) {
+        return projectService.get(id);
     }
 
     @GetMapping("/all")
-    public List<RoleDTO> getAllRoles(){
-        return roleService.getAll();
+    public List<ProjectDTO> getAllProjects(){
+        return projectService.getAll();
     }
 
     @PostMapping("/new")
-    RoleDTO newRole(@RequestBody RoleDTO newRole) {
-      return roleService.save(newRole);
+    ProjectDTO newProject(@RequestBody ProjectDTO newProject) {
+      return projectService.save(newProject);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteRole(@PathVariable("id") Long id){
-      roleService.delete(id);
+    public void deleteProject(@PathVariable("id") Long id){
+      projectService.delete(id);
     }
 
     @PutMapping("/update")
-    public RoleDTO updateRole(@RequestBody RoleDTO updatedRole){
-      return roleService.save(updatedRole);
+    public ProjectDTO updateProject(@RequestBody ProjectDTO updatedProject){
+      return projectService.save(updatedProject);
     }
 }
