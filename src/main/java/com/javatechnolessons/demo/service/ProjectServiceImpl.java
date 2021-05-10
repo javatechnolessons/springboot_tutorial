@@ -3,18 +3,23 @@ package com.javatechnolessons.demo.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityNotFoundException;
+
 import com.javatechnolessons.demo.dto.ProjectDTO;
 import com.javatechnolessons.demo.model.Project;
 import com.javatechnolessons.demo.repository.IProjectJpaRepository;
-import com.javatechnolessons.demo.service.exception.BusinessException;
+import com.javatechnolessons.demo.service.exception.ProjectNotFoundException;
+import com.javatechnolessons.demo.service.exception.TechnicalException;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 /**
  * Project service that access ProjectJpaRepository
+ * 
  * @author javatechnolessons
  * @version 1.0
  */
@@ -36,28 +41,38 @@ public class ProjectServiceImpl implements IProjectService {
     }
 
     @Override
-    public ProjectDTO get(Long id) {
-        Project projectEntity = projectRepo.getOne(id);
-        ProjectDTO projectDto = modelMapper.map(projectEntity, ProjectDTO.class);
+    public ProjectDTO get(Long id) throws ProjectNotFoundException, TechnicalException {
+        ProjectDTO projectDto = null;
+        try {
+            Project projectEntity = projectRepo.getOne(id);
+            modelMapper.map(projectEntity, ProjectDTO.class);
+        } catch (EntityNotFoundException e) {
+            throw new ProjectNotFoundException(id, e);
+        } catch (Exception e) {
+            throw new TechnicalException(e);
+        }
         return projectDto;
     }
 
     @Override
     public List<ProjectDTO> getAll() {
         List<Project> listProjectEntity = projectRepo.findAll();
-        List<ProjectDTO> listProjectDto = listProjectEntity.stream().map(project -> modelMapper.map(project, ProjectDTO.class))
-                .collect(Collectors.toList());
+        List<ProjectDTO> listProjectDto = listProjectEntity.stream()
+                .map(project -> modelMapper.map(project, ProjectDTO.class)).collect(Collectors.toList());
         return listProjectDto;
     }
 
     @Override
-    public void delete(Long id) throws BusinessException{
+    public void delete(Long id) throws ProjectNotFoundException,TechnicalException {
         try {
             projectRepo.deleteById(id);
-        } catch (Exception e) {
-            throw new BusinessException("Can't be deleted",e);
+        } 
+        catch (EmptyResultDataAccessException e) {
+            throw new ProjectNotFoundException(id, e);
+        }       
+        catch (Exception e) {
+            throw new TechnicalException(e);
         }
-        
 
     }
 

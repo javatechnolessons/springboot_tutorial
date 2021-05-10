@@ -2,6 +2,8 @@ package com.javatechnolessons.demo.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Optional;
+
 import com.javatechnolessons.demo.model.Employee;
 import com.javatechnolessons.demo.model.Project;
 import com.javatechnolessons.demo.model.Role;
@@ -62,5 +64,16 @@ public class EmployeeJpaRepositoyTest {
         assertEquals(2, repoEmpl.findAll().size());
         assertEquals(admin, empl124.getRole());
 
+    }
+
+    @Test
+    public void testExceptions(){
+        Role admin = new Role("ROLE_ADMIN");
+       
+        admin = repoRole.save(admin);
+        Optional<Role> role99 = repoRole.findById(Long.valueOf("99"));
+        System.out.println(role99);
+        //EmptyResultDataAccessException
+        //repoRole.deleteById(Long.valueOf("99"));
     }
 }
