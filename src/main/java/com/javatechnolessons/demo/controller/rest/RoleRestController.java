@@ -1,4 +1,4 @@
-package com.javatechnolessons.demo.rest.controller;
+package com.javatechnolessons.demo.controller.rest;
 
 import java.util.List;
 
