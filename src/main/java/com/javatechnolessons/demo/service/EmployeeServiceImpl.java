@@ -4,14 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityNotFoundException;
+
 import com.javatechnolessons.demo.dto.EmployeeDTO;
 import com.javatechnolessons.demo.dto.ProjectDTO;
 import com.javatechnolessons.demo.model.Employee;
 import com.javatechnolessons.demo.repository.IEmployeeJpaRepository;
 import com.javatechnolessons.demo.repository.IProjectJpaRepository;
+import com.javatechnolessons.demo.service.exception.EmployeeNotFoundException;
+import com.javatechnolessons.demo.service.exception.TechnicalException;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -43,17 +48,29 @@ public class EmployeeServiceImpl implements IEmployeeService {
                 ids.add(project.getId());
             }
             employeeEntity.setProjects(projectRepo.findByProjects(ids));
+        }else{
+            employeeEntity = employeeRepo.getOne(employee.getId());
+            employeeEntity = modelMapper.map(employee, Employee.class);
         }
         employeeEntity = employeeRepo.save(employeeEntity);
         return modelMapper.map(employeeEntity, EmployeeDTO.class);
     }
 
     @Override
-    public EmployeeDTO get(Long id) {
-        Employee employeeEntity = employeeRepo.getOne(id);
-        EmployeeDTO employeeDto = modelMapper.map(employeeEntity, EmployeeDTO.class);
+    public EmployeeDTO get(Long id) throws EmployeeNotFoundException, TechnicalException {
+        EmployeeDTO employeeDto = null;
+        try {
+            Employee employeeEntity = employeeRepo.getOne(id);
+            employeeEntity.getLastName();
+            employeeDto = modelMapper.map(employeeEntity, EmployeeDTO.class);
+        } catch (EntityNotFoundException e) {
+            throw new EmployeeNotFoundException(id, e);
+        } catch (Exception e) {
+            throw new TechnicalException(e);
+        }
         return employeeDto;
     }
+
 
     @Override
     public List<EmployeeDTO> getAll() {
@@ -64,8 +81,16 @@ public class EmployeeServiceImpl implements IEmployeeService {
     }
 
     @Override
-    public void delete(Long id) {
-        employeeRepo.deleteById(id);
+    public void delete(Long id) throws EmployeeNotFoundException,TechnicalException {
+        try {
+            employeeRepo.deleteById(id);
+        } 
+        catch (EmptyResultDataAccessException e) {
+            throw new EmployeeNotFoundException(id, e);
+        }       
+        catch (Exception e) {
+            throw new TechnicalException(e);
+        }
 
     }
 

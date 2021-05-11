@@ -23,27 +23,33 @@ public class EmployeeRestController {
     IEmployeeService employeeService;
 
     @GetMapping("/{id}")
-    public EmployeeDTO getEmployee(@PathVariable("id") Long id) {
+    public EmployeeDTO getEmployee(@PathVariable("id") Long id){
         return employeeService.get(id);
     }
 
     @GetMapping("/all")
-    public List<EmployeeDTO> getAllEmployees() {
+    public List<EmployeeDTO> getAll(){
         return employeeService.getAll();
     }
 
     @PostMapping("/new")
-    EmployeeDTO newEmployee(@RequestBody EmployeeDTO newEmployee) {
-      return employeeService.save(newEmployee);
+    public EmployeeDTO newEmployee(@RequestBody EmployeeDTO employee){
+        return employeeService.save(employee);
     }
 
     @DeleteMapping("/delete/{id}")
     public void deleteEmployee(@PathVariable("id") Long id){
-      employeeService.delete(id);
+        employeeService.delete(id);
     }
 
     @PutMapping("/update")
-    public EmployeeDTO updateEmployee(@RequestBody EmployeeDTO updatedEmployee){
-      return employeeService.save(updatedEmployee);
+    public EmployeeDTO updateEmployee(@RequestBody EmployeeDTO employee){
+        return employeeService.save(employee);
     }
+    /*http://localhost:8080/api/employees/99 (method GET) -> get employee with id=99
+http://localhost:8080/api/employees/all (method GET) -> get all employees
+http://localhost:8080/api/employees/new (method POST) -> creates new employee
+http://localhost:8080/api/employees/delete/89 (method DELETE) -> deletes employee with id=89
+http://localhost:8080/api/employees/update (method PUT) -> updates an employee
+*/
 }
