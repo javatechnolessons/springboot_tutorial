@@ -1,3 +1,14 @@
+----------REST-----------------------------------
+/*http://localhost:8080/api/employees/99 (method GET) -> get employee with id=99
+http://localhost:8080/api/employees/all (method GET) -> get all employees
+http://localhost:8080/api/employees/new (method POST) -> creates new employee
+http://localhost:8080/api/employees/delete/89 (method DELETE) -> deletes employee with id=89
+http://localhost:8080/api/employees/update (method PUT) -> updates an employee
+*/
+http://localhost:8080/employees/edit/9 (method GET)
+http://localhost:8080/employees/delete/8 (method GET)
+http://localhost:8080/employees/save (method FORM)
+----------MVC-----------------------------------
 http://localhost:8080/roles/show (method GET)
 http://localhost:8080/roles/new (method GET)
 http://localhost:8080/roles/edit/9 (method GET)

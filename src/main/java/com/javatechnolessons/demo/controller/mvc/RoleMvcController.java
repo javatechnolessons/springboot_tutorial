@@ -1,9 +1,9 @@
-package com.javatechnolessons.demo.mvc.controller;
+package com.javatechnolessons.demo.controller.mvc;
 
 import java.util.HashMap;
 
+import com.javatechnolessons.demo.controller.mvc.form.RoleForm;
 import com.javatechnolessons.demo.dto.RoleDTO;
-import com.javatechnolessons.demo.mvc.form.RoleForm;
 import com.javatechnolessons.demo.service.IRoleService;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.javatechnolessons.demo.mvc.form;
+package com.javatechnolessons.demo.controller.mvc.form;
 
 import com.javatechnolessons.demo.dto.ProjectDTO;
 

@@ -1,10 +1,10 @@
-package com.javatechnolessons.demo.mvc.controller;
+package com.javatechnolessons.demo.controller.mvc;
 
 import java.util.HashMap;
 import java.util.List;
 
+import com.javatechnolessons.demo.controller.mvc.form.ProjectForm;
 import com.javatechnolessons.demo.dto.ProjectDTO;
-import com.javatechnolessons.demo.mvc.form.ProjectForm;
 import com.javatechnolessons.demo.service.IProjectService;
 
 import org.springframework.beans.factory.annotation.Autowired;
